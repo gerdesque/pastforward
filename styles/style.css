@@ -11,6 +11,11 @@ body {
   overflow: hidden;
 }
 
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
 img {
   display: block;
   position: absolute;
@@ -33,11 +38,11 @@ img {
 
 video {
   position: fixed;
-  top: 5%;
+  top: 15%;
   left: 0;
   min-width: 100%;
-  min-height: 95%;
+  min-height: 100%;
   width: auto;
-  height: 95%;
+  height: 100%;
   z-index: 9999;
 }
