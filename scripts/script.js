@@ -13,13 +13,13 @@ function gestureHandler(element) {
   this.angle = element.angle;
   this.size = element.size;
   var that = this;
-  this.element.addEventListener('pointerdown', function (e) {
+  this.element.addEventListener('touchstart', function (e) {
     e.preventDefault();
     e.stopPropagation();
     that.init();
     that.gesture(e);
   }, true);
-  this.element.addEventListener('pointermove', function (e) {
+  this.element.addEventListener('touchmove', function (e) {
     e.preventDefault();
     e.stopPropagation();
     that.gesture(e);
