@@ -30,3 +30,14 @@ img {
   margin: 0;
   padding: 0;
 }
+
+video {
+  position: fixed;
+  top: 5%;
+  left: 0;
+  min-width: 100%;
+  min-height: 95%;
+  width: auto;
+  height: 95%;
+  z-index: 9999;
+}
