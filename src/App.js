@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <a href="#top" className="App-Link" onClick={this.onClick}>
-          <h1>past forward</h1>
+          <span className="App-past">past</span><span className="App-forward">forward</span>
         </a>
         </header>
         <ImageList/>

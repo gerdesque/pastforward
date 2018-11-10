@@ -9,55 +9,50 @@ class Image extends Component {
     imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
     imageTop: Math.random() * (window.innerHeight / 2) + 'px',
     zIndex: this.props.id,
-    transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')'
+    transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
+    src: this.props.src,
+    showText: false
   };
 
-  previousLeft = 0;
-  previousTop = 0;
   store = [{x:-1, y:-1},{x:-1, y:-1}];
-  dx = 0;
-  dy = 0;
   swipe = false;
   startX;
   startY;
   distX;
   distY;
-  threshold = 150; //required min distance traveled to be considered swipe
+  threshold = 300; //required min distance traveled to be considered swipe
   restraint = 100; // maximum distance allowed at the same time in perpendicular direction
-  allowedTime = 500; // maximum time allowed to travel that distance
+  allowedTime = 300; // maximum time allowed to travel that distance
   elapsedTime;
   startTime;
-  that = this;
+  self = this;
 
   onDown = event => {
     event.preventDefault();
     event.stopPropagation();
     this.startX = event.targetTouches[0].pageX;
     this.startY = event.targetTouches[0].pageY;
-    this.startTime = new Date().getTime();
-    this.that.init();
-    this.that.gesture(event);
+    this.startTime = new Date().getTime(); 
+    this.self.init(event);
+    this.self.gesture(event);
   };
 
   onMove = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.distX = event.targetTouches[0].pageX - this.startX;
-    this.distY = event.targetTouches[0].pageY - this.startY;
-    this.that.gesture(event);
+    this.self.gesture(event);
   };
 
   onEnd = event => {
     this.elapsedTime = new Date().getTime() - this.startTime
-    if (this.elapsedTime <= this.allowedTime){
-      //alert(this.distX);
+    if (event.targetTouches.length === 0 && this.elapsedTime <= this.allowedTime){
       if ((Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint)
        || (Math.abs(this.distY) >= this.threshold && Math.abs(this.distX) <= this.restraint)){ 
         this.swipe = !this.swipe;
         var element = document.getElementById(this.props.id);
         var height = element.clientHeight;
         var width = element.clientWidth;
-        element.src = this.swipe ? 'back.png' : this.props.src;
+        this.setState({src: this.swipe ? 'back.png' : this.props.src, showText: !this.state.showText});
         element.height = height;
         element.width = width;
       }
@@ -65,7 +60,7 @@ class Image extends Component {
   }
 
   init = () => {
-    this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;    
+    this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;   
     var zIndex = 0; // just using positive indices
     var images = document.getElementsByTagName('img');
     for (var i = 0; i < images.length; i++) {
@@ -83,6 +78,8 @@ class Image extends Component {
     var y2 = 0;
     var angle = 0;
     var size = 0;
+    this.distX = event.targetTouches[0].pageX - this.startX;
+    this.distY = event.targetTouches[0].pageY - this.startY;
     if (event.targetTouches) {
       if (event.targetTouches.length >= 2) {
 
@@ -125,24 +122,23 @@ class Image extends Component {
     }
   };
 
-  twofinger = function (size, angle) {
-    var that = this;
+  twofinger = (size, angle) => {
     var element = document.getElementById(this.props.id);
-    var size_ratio = ((element.width * that.size) + size) / (element.width * that.size);
-    that.size *= size_ratio;
-    if (that.size < 0.5) {
-      that.size = 0.5;
+    var size_ratio = ((element.width * this.size) + size) / (element.width * this.size);
+    this.size *= size_ratio;
+    if (this.size < 0.5) {
+      this.size = 0.5;
     }
-    if (that.size > 1) {
-      that.size = 1;
+    if (this.size > 1) {
+      this.size = 1;
     }
-    that.angle += angle;
+    this.angle += angle;
     this.setState(({transform}) => ({
-      transform: 'rotate(' + that.angle + 'rad) scale(' + that.size + ')'
+      transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')'
     }));
   };
 
-  onefinger = function (dx, dy) {
+  onefinger = (dx, dy) => {
     var element = document.getElementById(this.props.id);
     this.setState(({imageLeft, imageTop}) => ({
       imageLeft: element.offsetLeft + dx + 'px',
@@ -170,14 +166,22 @@ class Image extends Component {
       transform: transform
     };
 
+    let text = null;
+    if (this.state.showText) {
+      text = (<p class="Image-text" style={{...style}} onClick={this.playVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
+    }
+
     return (
       // eslint-disable-next-line jsx-a11y/alt-text
-      <img {...this.props} style={{...style}}
+      <div>
+      <img {...this.props} src={this.state.src} style={{...style}}
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
         onClick={this.playVideo}
       />
+      {text}
+      </div>
     )
   }
 }
