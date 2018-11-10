@@ -1,0 +1,21 @@
+@font-face { font-family: 'GermaniaVersalien'; src: url(GermaniaVersalien.ttf) format('truetype'); }
+@font-face { font-family: 'DistortionDosAnalogue'; src: url(DistortionDosAnalogue.otf) format('truetype'); }
+.App-header {
+  margin-left: 5vh;
+}
+
+.App-Link {
+  text-decoration: none;
+  color:white;
+}
+
+.App-past {
+  font-size: calc(48px + 2vmin);
+  font-family: GermaniaVersalien, arial, sans-serif;
+  margin-right: 1vh;
+}
+
+.App-forward {
+  font-size: calc(48px + 2vmin);
+  font-family: DistortionDosAnalogue, arial, sans-serif;
+}
