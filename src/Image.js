@@ -8,7 +8,7 @@ class Image extends Component {
   state = {
     imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
     imageTop: Math.random() * (window.innerHeight / 2) + 'px',
-    zIndex: this.props.index,
+    zIndex: this.props.id,
     transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')'
   };
 
@@ -17,11 +17,24 @@ class Image extends Component {
   store = [{x:-1, y:-1},{x:-1, y:-1}];
   dx = 0;
   dy = 0;
+  swipe = false;
+  startX;
+  startY;
+  distX;
+  distY;
+  threshold = 150; //required min distance traveled to be considered swipe
+  restraint = 100; // maximum distance allowed at the same time in perpendicular direction
+  allowedTime = 500; // maximum time allowed to travel that distance
+  elapsedTime;
+  startTime;
   that = this;
 
   onDown = event => {
     event.preventDefault();
     event.stopPropagation();
+    this.startX = event.targetTouches[0].pageX;
+    this.startY = event.targetTouches[0].pageY;
+    this.startTime = new Date().getTime();
     this.that.init();
     this.that.gesture(event);
   };
@@ -29,9 +42,27 @@ class Image extends Component {
   onMove = event => {
     event.preventDefault();
     event.stopPropagation();
+    this.distX = event.targetTouches[0].pageX - this.startX;
+    this.distY = event.targetTouches[0].pageY - this.startY;
     this.that.gesture(event);
-
   };
+
+  onEnd = event => {
+    this.elapsedTime = new Date().getTime() - this.startTime
+    if (this.elapsedTime <= this.allowedTime){
+      //alert(this.distX);
+      if ((Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint)
+       || (Math.abs(this.distY) >= this.threshold && Math.abs(this.distX) <= this.restraint)){ 
+        this.swipe = !this.swipe;
+        var element = document.getElementById(this.props.id);
+        var height = element.clientHeight;
+        var width = element.clientWidth;
+        element.src = this.swipe ? 'back.png' : this.props.src;
+        element.height = height;
+        element.width = width;
+      }
+    }
+  }
 
   init = () => {
     this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;    
@@ -96,7 +127,8 @@ class Image extends Component {
 
   twofinger = function (size, angle) {
     var that = this;
-    var size_ratio = ((that.element.width * that.size) + size) / (that.element.width * that.size);
+    var element = document.getElementById(this.props.id);
+    var size_ratio = ((element.width * that.size) + size) / (element.width * that.size);
     that.size *= size_ratio;
     if (that.size < 0.5) {
       that.size = 0.5;
@@ -111,19 +143,19 @@ class Image extends Component {
   };
 
   onefinger = function (dx, dy) {
-    var that = this;
+    var element = document.getElementById(this.props.id);
     this.setState(({imageLeft, imageTop}) => ({
-      imageLeft: that.element.offsetLeft + dx + 'px',
-      imageTop: that.element.offsetTop + dy + 'px',
+      imageLeft: element.offsetLeft + dx + 'px',
+      imageTop: element.offsetTop + dy + 'px',
     }));
   };
 
-  playVideo = function (src) {
+  playVideo = () => {
     var video = document.createElement("video");
     video.controls = true;
     var source = document.createElement("source"); 
     source.type = "video/mp4";
-    source.src = src;
+    source.src = this.props.video;
     video.appendChild(source);
     document.body.appendChild(video);
     video.play();
@@ -141,10 +173,10 @@ class Image extends Component {
     return (
       // eslint-disable-next-line jsx-a11y/alt-text
       <img {...this.props} style={{...style}}
-        onPointerDown={this.onDown}
-        onPointerMove={this.onMove}
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
+        onTouchEnd={this.onEnd}
+        onClick={this.playVideo}
       />
     )
   }
