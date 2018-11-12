@@ -15,6 +15,8 @@ class Image extends Component {
   };
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
+  dragging = false;
+  /*
   swipe = false;
   startX;
   startY;
@@ -25,25 +27,48 @@ class Image extends Component {
   allowedTime = 300; // maximum time allowed to travel that distance
   elapsedTime;
   startTime;
+  */
   self = this;
 
   onDown = event => {
     event.preventDefault();
     event.stopPropagation();
+    this.dragging = true;
+    this.self.init(event);
+    
+    /*
     this.startX = event.targetTouches[0].pageX;
     this.startY = event.targetTouches[0].pageY;
     this.startTime = new Date().getTime(); 
-    this.self.init(event);
     this.self.gesture(event);
+    */
   };
 
   onMove = event => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.self.gesture(event);
+    if (this.dragging) {
+      event.preventDefault();
+      event.stopPropagation();
+      var x1 = event.pageX;
+      var y1 = event.pageY;
+      
+      if (this.store[0].x !== -1) {
+        var left = event.target.offsetLeft + x1 - this.store[0].x + 'px'
+        var top = event.target.offsetTop + y1 - this.store[0].y + 'px'
+        this.setState(({imageLeft, imageTop}) => ({
+          imageLeft: left,
+          imageTop: top
+        }));
+      }
+      this.store[0].x = x1;
+      this.store[0].y = y1;
+    }
+    
+    //this.self.gesture(event);
   };
 
   onEnd = event => {
+    this.dragging = false;
+    /*
     this.elapsedTime = new Date().getTime() - this.startTime
     if (event.targetTouches.length === 0 && this.elapsedTime <= this.allowedTime){
       if ((Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint)
@@ -57,10 +82,11 @@ class Image extends Component {
         element.width = width;
       }
     }
+    */
   }
 
   init = () => {
-    this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;   
+    this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;
     var zIndex = 0; // just using positive indices
     var images = document.getElementsByTagName('img');
     for (var i = 0; i < images.length; i++) {
@@ -172,15 +198,14 @@ class Image extends Component {
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/alt-text
       <div>
-      <img {...this.props} src={this.state.src} style={{...style}}
-        onTouchStart={this.onDown}
-        onTouchMove={this.onMove}
-        onTouchEnd={this.onEnd}
-        onClick={this.playVideo}
-      />
-      {text}
+        <img {...this.props} src={this.state.src} style={{...style}}
+          onPointerDown={this.onDown}
+          onPointerMove={this.onMove}
+          onPointerUp={this.onEnd}
+          onPointerOut={this.onEnd}
+        />
+        {text}
       </div>
     )
   }
