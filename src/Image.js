@@ -20,9 +20,9 @@ class Image extends Component {
   startY;
   distX;
   distY;
-  threshold = 300; //required min distance traveled to be considered swipe
+  threshold = 100; //required min distance traveled to be considered swipe
   restraint = 100; // maximum distance allowed at the same time in perpendicular direction
-  allowedTime = 300; // maximum time allowed to travel that distance
+  allowedTime = 500; // maximum time allowed to travel that distance
   elapsedTime;
   startTime;
   self = this;
