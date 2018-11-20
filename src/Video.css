@@ -18,3 +18,8 @@
   padding: 15vh;
   text-align: center;
 }
+
+.association-Text {
+  float: left;
+  width: 33.33%;
+}

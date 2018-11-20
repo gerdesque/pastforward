@@ -4,22 +4,23 @@ import './Video.css';
 let timeout;
 
 class Video extends Component {
-
   constructor(props) {
     super(props);
-
+    this.state = {
+      showIntro: true,
+      showVideo: false,
+      showAssociation: false,
+      introText: this.props.intro,
+      src: this.props.src+'#t='+this.convertTime(this.props.start)+','+this.convertTime(this.props.end),
+      associations: this.props.associations
+    }
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  // TODO: Use video intro text, start/end time and association text from video nodes
-  state = {
-    showIntro: true,
-    showVideo: false,
-    showAssociation: false,
-    introText: "Die Kaiserzeit: Kaiser Wilhelm II. beehrt am 4. Mai 1897 in Stettin eine der damals führenden Werften in Deutschland mit seinem Besuch an der Landungsbrücke des Werkgeländes. Anlass ist der Stapellauf des Transatlantik-Schnelldampfers  „Kaiser Wilhelm der Große“.",
-    src: this.props.src+'#t=33,41',
-    associationText: "Bereits 3 Jahre zuvor: der Zustand der Dampfschifffahrt im Schwarzen Meer"
-  };
+  convertTime(value) {
+    var splitValue = value.split(':');
+    return (+splitValue[0]) * 60 + (+splitValue[1]);
+  }
 
   componentDidMount() {
     timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), 5000);
@@ -29,7 +30,7 @@ class Video extends Component {
   componentWillUnmount() {
     clearTimeout(timeout);
     document.removeEventListener('click', this.handleClickOutside);
-  };
+  }
 
   handleClickOutside(event) {
     event.preventDefault();
@@ -45,7 +46,7 @@ class Video extends Component {
 
   pauseVideo = event => {
     this.setState({showVideo: false, showAssociation: true});
-  };
+  }
 
   render() {
 
@@ -63,7 +64,8 @@ class Video extends Component {
       </video>);
     }
     if (this.state.showAssociation) {
-      associationComponent = (<div className="association"><p className="association-Text">{this.state.associationText}</p></div>);
+      let associations = this.state.associations.map((a) => <p className="association-Text">{a.associationText}</p>);
+      associationComponent = (<div className="association">{associations}</div>);
     }
 
     return (<div className="Video" ref={node => { this.node = node; }}>{introComponent}{videoComponent}{associationComponent}</div>);
