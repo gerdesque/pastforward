@@ -6,15 +6,18 @@ class Image extends Component {
   size = (Math.random() * 0.25) + 0.5;
   angle = (Math.random() * Math.PI / 4) * (-1 + Math.random() * 2);
 
-  state = {
-    imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
-    imageTop: Math.random() * (window.innerHeight / 2) + 'px',
-    zIndex: this.props.id,
-    transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
-    src: this.props.src,
-    showFlipside: false,
-    showVideo: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
+      imageTop: Math.random() * (window.innerHeight / 2) + 'px',
+      zIndex: this.props.id,
+      transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
+      src: this.props.thumbnail,
+      showFlipside: false,
+      showVideo: false
+    };
+  }
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
   swipe = false;
@@ -149,9 +152,7 @@ class Image extends Component {
   };
 
   displayVideo = () => {
-      this.setState({
-        showVideo: !this.state.showVideo
-      })
+      this.setState({showVideo: !this.state.showVideo})
   }
 
   render() {
@@ -170,11 +171,10 @@ class Image extends Component {
 
     let video = null;
     if (this.state.showVideo) {
-      video = (<Video src={this.props.video}/>)
+      video = (<Video {...this.props} src={this.props.video}/>)
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/alt-text
       <div>
       <img {...this.props} src={this.state.src} style={{...style}}
         onTouchStart={this.onDown}
