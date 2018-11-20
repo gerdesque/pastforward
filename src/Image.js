@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Image.css';
+import Video from './Video';
 
 class Image extends Component {
   size = (Math.random() * 0.25) + 0.5;
@@ -11,7 +12,8 @@ class Image extends Component {
     zIndex: this.props.id,
     transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
     src: this.props.src,
-    showText: false
+    showFlipside: false,
+    showVideo: false
   };
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
@@ -52,7 +54,7 @@ class Image extends Component {
         var element = document.getElementById(this.props.id);
         var height = element.clientHeight;
         var width = element.clientWidth;
-        this.setState({src: this.swipe ? 'back.png' : this.props.src, showText: !this.state.showText});
+        this.setState({src: this.swipe ? 'back.png' : this.props.src, showFlipside: !this.state.showFlipside});
         element.height = height;
         element.width = width;
       }
@@ -146,36 +148,10 @@ class Image extends Component {
     }));
   };
 
-  openVideoNode = () => {
-    var intro = document.createElement("div");
-    intro.className = "intro";
-    var introText = document.createElement("p");
-    introText.className = "intro-Text";
-    //TODO: Use video intro from video nodes
-    var introTextNode = document.createTextNode("Die Kaiserzeit: Kaiser Wilhelm II. beehrt am 4. Mai 1897 in Stettin eine der damals führenden Werften in Deutschland mit seinem Besuch an der Landungsbrücke des Werkgeländes. Anlass ist der Stapellauf des Transatlantik-Schnelldampfers  „Kaiser Wilhelm der Große“.");
-    introText.appendChild(introTextNode);
-    intro.appendChild(introText);
-    document.body.appendChild(intro);
-    intro.style.display = "block";
-
-    var video = document.createElement("video");
-    video.controls = true;
-    video.onpause = function(e){
-      video.remove(video);
-      intro.style.display = "block";
-    };
-    var source = document.createElement("source");
-    source.type = "video/mp4";
-    // TODO: Use video start/end time from video nodes
-    source.src = this.props.video+'#t=33,41';
-    video.appendChild(source);
-
-    setTimeout(function(){
-      intro.style.display = "none";
-      document.body.appendChild(video);
-      video.play();
-    }, 5000);  
-  
+  displayVideo = () => {
+      this.setState({
+        showVideo: !this.state.showVideo
+      })
   }
 
   render() {
@@ -187,9 +163,14 @@ class Image extends Component {
       transform: transform
     };
 
-    let text = null;
-    if (this.state.showText) {
-      text = (<p class="Image-text" style={{...style}} onClick={this.openVideoNode}>Kaiser Wilhelm beim Entenfüttern</p>)
+    let flipside = null;
+    if (this.state.showFlipside) {
+      flipside = (<p class="Image-text" style={{...style}} onClick={this.displayVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
+    }
+
+    let video = null;
+    if (this.state.showVideo) {
+      video = (<Video src={this.props.video}/>)
     }
 
     return (
@@ -199,9 +180,10 @@ class Image extends Component {
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
-        onClick={this.openVideoNode}
+        onClick={this.displayVideo}
       />
-      {text}
+      {flipside}
+      {video}
       </div>
     )
   }
