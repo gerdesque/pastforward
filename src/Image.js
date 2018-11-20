@@ -146,15 +146,36 @@ class Image extends Component {
     }));
   };
 
-  playVideo = () => {
+  openVideoNode = () => {
+    var intro = document.createElement("div");
+    intro.className = "intro";
+    var introText = document.createElement("p");
+    introText.className = "intro-Text";
+    //TODO: Use video intro from video nodes
+    var introTextNode = document.createTextNode("Die Kaiserzeit: Kaiser Wilhelm II. beehrt am 4. Mai 1897 in Stettin eine der damals führenden Werften in Deutschland mit seinem Besuch an der Landungsbrücke des Werkgeländes. Anlass ist der Stapellauf des Transatlantik-Schnelldampfers  „Kaiser Wilhelm der Große“.");
+    introText.appendChild(introTextNode);
+    intro.appendChild(introText);
+    document.body.appendChild(intro);
+    intro.style.display = "block";
+
     var video = document.createElement("video");
     video.controls = true;
-    var source = document.createElement("source"); 
+    video.onpause = function(e){
+      video.remove(video);
+      intro.style.display = "block";
+    };
+    var source = document.createElement("source");
     source.type = "video/mp4";
-    source.src = this.props.video;
+    // TODO: Use video start/end time from video nodes
+    source.src = this.props.video+'#t=33,41';
     video.appendChild(source);
-    document.body.appendChild(video);
-    video.play();
+
+    setTimeout(function(){
+      intro.style.display = "none";
+      document.body.appendChild(video);
+      video.play();
+    }, 5000);  
+  
   }
 
   render() {
@@ -168,7 +189,7 @@ class Image extends Component {
 
     let text = null;
     if (this.state.showText) {
-      text = (<p class="Image-text" style={{...style}} onClick={this.playVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
+      text = (<p class="Image-text" style={{...style}} onClick={this.openVideoNode}>Kaiser Wilhelm beim Entenfüttern</p>)
     }
 
     return (
@@ -178,7 +199,7 @@ class Image extends Component {
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
-        onClick={this.playVideo}
+        onClick={this.openVideoNode}
       />
       {text}
       </div>

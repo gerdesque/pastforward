@@ -19,3 +19,9 @@
   font-size: calc(48px + 2vmin);
   font-family: DistortionDosAnalogue, arial, sans-serif;
 }
+
+.App-forward:after {
+  content: '⏩';
+  height: 28px;
+  width: 28px;
+}
