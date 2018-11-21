@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import './Image.css';
+import Video from './Video';
 
 class Image extends Component {
   size = (Math.random() * 0.25) + 0.5;
   angle = (Math.random() * Math.PI / 4) * (-1 + Math.random() * 2);
 
-  state = {
-    imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
-    imageTop: Math.random() * (window.innerHeight / 2) + 'px',
-    zIndex: this.props.id,
-    transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
-    src: this.props.src,
-    showText: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
+      imageTop: Math.random() * (window.innerHeight / 2) + 'px',
+      zIndex: this.props.id,
+      transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
+      src: this.props.thumbnail,
+      showFlipside: false,
+      showVideo: false
+    };
+  }
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
   swipe = false;
@@ -52,7 +57,7 @@ class Image extends Component {
         var element = document.getElementById(this.props.id);
         var height = element.clientHeight;
         var width = element.clientWidth;
-        this.setState({src: this.swipe ? 'back.png' : this.props.src, showText: !this.state.showText});
+        this.setState({src: this.swipe ? 'back.png' : this.props.thumbnail, showFlipside: !this.state.showFlipside});
         element.height = height;
         element.width = width;
       }
@@ -146,15 +151,8 @@ class Image extends Component {
     }));
   };
 
-  playVideo = () => {
-    var video = document.createElement("video");
-    video.controls = true;
-    var source = document.createElement("source"); 
-    source.type = "video/mp4";
-    source.src = this.props.video;
-    video.appendChild(source);
-    document.body.appendChild(video);
-    video.play();
+  displayVideo = () => {
+      this.setState({showVideo: !this.state.showVideo})
   }
 
   render() {
@@ -166,21 +164,26 @@ class Image extends Component {
       transform: transform
     };
 
-    let text = null;
-    if (this.state.showText) {
-      text = (<p class="Image-text" style={{...style}} onClick={this.playVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
+    let flipside = null;
+    if (this.state.showFlipside) {
+      flipside = (<p class="Image-text" style={{...style}} onClick={this.displayVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
+    }
+
+    let video = null;
+    if (this.state.showVideo) {
+      video = (<Video {...this.props} src={this.props.video}/>)
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/alt-text
       <div>
       <img {...this.props} src={this.state.src} style={{...style}}
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
-        onClick={this.playVideo}
+        onClick={this.displayVideo}
       />
-      {text}
+      {flipside}
+      {video}
       </div>
     )
   }

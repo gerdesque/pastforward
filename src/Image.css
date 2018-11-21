@@ -1,4 +1,7 @@
-@font-face { font-family: 'ModernGermanHandwriting'; src: url(ModernGermanHandwriting.ttf) format('truetype'); }
+@font-face {
+  font-family: 'VeteranTypewriter';
+  src: url(VeteranTypewriter.ttf) format('truetype');
+}
 
 img {
   display: block;
@@ -21,7 +24,7 @@ img {
   display: block;
   position: absolute;
   color: black;
-  font-family: ModernGermanHandwriting, arial, sans-serif;
-  font-size: calc(36px + 2vmin);
+  font-family: VeteranTypewriter, arial, sans-serif;
+  font-size: calc(24px + 2vmin);
   margin: 25vh;
 }

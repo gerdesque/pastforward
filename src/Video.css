@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Berolina';
+  src: url(Berolina.ttf) format('truetype');
+}
+
+video {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: 100%;
+  z-index: 9999;
+}
+
+.intro,
+.association {
+  position: fixed;
+  height:100%;
+  width:100%;
+  overflow:hidden;
+  z-index: 9999;
+  background: url(intro.png);
+  background-size: cover;
+}
+
+.intro-Text,
+.association-Text {
+  display: block;
+  color: rgb(151, 141, 122);
+  font-size: calc(32px + 8vmin);
+  font-family: Berolina, arial, sans-serif;
+  padding: 15vh;
+  text-align: center;
+}
+
+.association-Text {
+  float: left;
+  width: 33.33%;
+}

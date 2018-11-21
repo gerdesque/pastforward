@@ -1,12 +1,16 @@
-@font-face { font-family: 'GermaniaVersalien'; src: url(GermaniaVersalien.ttf) format('truetype'); }
-@font-face { font-family: 'DistortionDosAnalogue'; src: url(DistortionDosAnalogue.otf) format('truetype'); }
-.App-header {
-  margin-left: 5vh;
+@font-face {
+  font-family: 'GermaniaVersalien';
+  src: url(GermaniaVersalien.ttf) format('truetype');
 }
 
-.App-Link {
-  text-decoration: none;
-  color:white;
+@font-face {
+  font-family: 'DistortionDosAnalogue';
+  src: url(DistortionDosAnalogue.otf) format('truetype');
+}
+
+.App-header {
+  margin-left: 5vh;
+  color: white;
 }
 
 .App-past {
@@ -18,4 +22,11 @@
 .App-forward {
   font-size: calc(48px + 2vmin);
   font-family: DistortionDosAnalogue, arial, sans-serif;
+}
+
+.App-forward:after {
+  content: '⏩';
+  height: 28px;
+  width: 28px;
+  opacity: 0.75;
 }
