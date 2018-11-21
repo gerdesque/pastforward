@@ -16,14 +16,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-video {
-  position: fixed;
-  top: 15%;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: 100%;
-  z-index: 9999;
-}
