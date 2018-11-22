@@ -21,6 +21,7 @@ class Image extends Component {
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
   dragging = false;
+  disable_click = false;
   swipe = false;
   startX;
   startY;
@@ -36,6 +37,7 @@ class Image extends Component {
   onDown = event => {
     event.preventDefault();
     event.stopPropagation();
+    this.disable_click = false;
     if (!event.targetTouches) {
       this.dragging = true;
     }
@@ -51,6 +53,7 @@ class Image extends Component {
   onMove = event => {
     event.preventDefault();
     event.stopPropagation();
+    this.disable_click = true;
     if (this.dragging) {
       var x1 = event.pageX;
       var y1 = event.pageY;
@@ -180,7 +183,9 @@ class Image extends Component {
   };
 
   displayVideo = () => {
+    if (!this.disable_click) {
       this.setState({showVideo: !this.state.showVideo})
+    }
   }
 
   render() {
@@ -212,7 +217,7 @@ class Image extends Component {
         onPointerMove={this.onMove}
         onPointerUp={this.onEnd}
         onPointerOut={this.onEnd}
-        onDoubleClick={this.displayVideo}
+        onClick={this.displayVideo}
       />
       {flipside}
       {video}
