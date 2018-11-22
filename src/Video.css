@@ -15,9 +15,9 @@ video {
 .intro,
 .association {
   position: fixed;
-  height:100%;
-  width:100%;
-  overflow:hidden;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   z-index: 9999;
   background: url(intro.png);
   background-size: cover;

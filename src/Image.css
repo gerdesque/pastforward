@@ -10,6 +10,8 @@ img {
   transform: scale(0.5);
   top: 0px;
   left: 0px;
+  width: 50%;
+  height: auto;
   /* though this won't be flush, due to transform (actual top and left = half the width/height of image */
   border: 20px transparent solid;
   background-color: #eee;
