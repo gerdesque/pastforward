@@ -20,6 +20,8 @@ class Image extends Component {
   }
 
   store = [{x:-1, y:-1},{x:-1, y:-1}];
+  dragging = false;
+  disable_click = false;
   swipe = false;
   startX;
   startY;
@@ -35,31 +37,60 @@ class Image extends Component {
   onDown = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.startX = event.targetTouches[0].pageX;
-    this.startY = event.targetTouches[0].pageY;
-    this.startTime = new Date().getTime(); 
+    this.disable_click = false;
+    if (!event.targetTouches) {
+      this.dragging = true;
+    }
     this.self.init(event);
-    this.self.gesture(event);
+    if (event.targetTouches) {
+      this.startX = event.targetTouches[0].pageX;
+      this.startY = event.targetTouches[0].pageY;
+      this.startTime = new Date().getTime(); 
+      this.self.gesture(event);
+    }
   };
 
   onMove = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.self.gesture(event);
+    this.disable_click = true;
+    if (this.dragging) {
+      var x1 = event.pageX;
+      var y1 = event.pageY;
+      
+      if (this.store[0].x !== -1) {
+        var left = event.target.offsetLeft + x1 - this.store[0].x + 'px'
+        var top = event.target.offsetTop + y1 - this.store[0].y + 'px'
+        this.setState(({imageLeft, imageTop}) => ({
+          imageLeft: left,
+          imageTop: top
+        }));
+      }
+      this.store[0].x = x1;
+      this.store[0].y = y1;
+    }
+    if (event.targetTouches) {
+      this.self.gesture(event);
+    }
   };
 
   onEnd = event => {
-    this.elapsedTime = new Date().getTime() - this.startTime
-    if (event.targetTouches.length === 0 && this.elapsedTime <= this.allowedTime){
-      if ((Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint)
-       || (Math.abs(this.distY) >= this.threshold && Math.abs(this.distX) <= this.restraint)){ 
-        this.swipe = !this.swipe;
-        var element = document.getElementById(this.props.id);
-        var height = element.clientHeight;
-        var width = element.clientWidth;
-        this.setState({src: this.swipe ? 'back.png' : this.props.thumbnail, showFlipside: !this.state.showFlipside});
-        element.height = height;
-        element.width = width;
+    event.preventDefault();
+    event.stopPropagation();
+    this.dragging = false;
+    if (event.targetTouches) {
+      this.elapsedTime = new Date().getTime() - this.startTime
+      if (event.targetTouches.length === 0 && this.elapsedTime <= this.allowedTime){
+        if ((Math.abs(this.distX) >= this.threshold && Math.abs(this.distY) <= this.restraint)
+        || (Math.abs(this.distY) >= this.threshold && Math.abs(this.distX) <= this.restraint)){ 
+          this.swipe = !this.swipe;
+          var element = document.getElementById(this.props.id);
+          var height = element.clientHeight;
+          var width = element.clientWidth;
+          this.setState({src: this.swipe ? 'back.png' : this.props.thumbnail, showFlipside: !this.state.showFlipside});
+          element.height = height;
+          element.width = width;
+        }
       }
     }
   }
@@ -152,7 +183,9 @@ class Image extends Component {
   };
 
   displayVideo = () => {
+    if (!this.disable_click) {
       this.setState({showVideo: !this.state.showVideo})
+    }
   }
 
   render() {
@@ -180,6 +213,10 @@ class Image extends Component {
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
+        onPointerDown={this.onDown}
+        onPointerMove={this.onMove}
+        onPointerUp={this.onEnd}
+        onPointerOut={this.onEnd}
         onClick={this.displayVideo}
       />
       {flipside}

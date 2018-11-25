@@ -12,7 +12,9 @@ class Video extends Component {
       showAssociation: false,
       introText: this.props.intro,
       src: this.props.src+'#t='+this.convertTime(this.props.start)+','+this.convertTime(this.props.end),
-      associations: this.props.associations
+      associations: this.props.associations,
+      films: [],
+      arcs: []
     }
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -25,7 +27,18 @@ class Video extends Component {
   componentDidMount() {
     timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), 5000);
     document.addEventListener('click', this.handleClickOutside);
+    this.getNodes();
   };
+
+  async getNodes() {
+    try {
+      let response = await fetch('https://raw.githubusercontent.com/gerdesque/pastforwardgraph/master/films.json');
+      let responseJson = await response.json();
+      this.setState({ films: responseJson.nodes, arcs: responseJson.arcs });
+     } catch(error) {
+      console.error(error);
+    }
+  }
 
   componentWillUnmount() {
     clearTimeout(timeout);
@@ -48,6 +61,25 @@ class Video extends Component {
     this.setState({showVideo: false, showAssociation: true});
   }
 
+  selectAssociation = event => {
+    //TODO: Set new association and start new intro/video
+    //let currentNode = this.state.films.find(a => a.section === target);
+    this.setState({
+      //introText: currentNode.intro,
+      //src: currentNode.video,
+      //associations:this.state.arcs.filter(a => a.source === target),
+      showIntro: true,
+      showVideo: false,
+      showAssociation: false
+    });
+  }
+
+  getThumbnail(target) {
+    let currentNode = this.state.films.find(a => a.section === target);
+    return currentNode.thumbnail;
+  }
+
+
   render() {
 
     let introComponent = null;
@@ -64,7 +96,10 @@ class Video extends Component {
       </video>);
     }
     if (this.state.showAssociation) {
-      let associations = this.state.associations.map((a) => <p className="association-Text">{a.associationText}</p>);
+      let associations = this.state.associations.map((a) => <div className="association-Container" onClick={this.selectAssociation}>
+      <img className="association-Image" alt={a.target} src={this.getThumbnail(a.target)}/>
+      <p className="association-Text">{a.associationText}</p>
+      </div>);
       associationComponent = (<div className="association">{associations}</div>);
     }
 
