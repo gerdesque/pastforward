@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "8faf7581001b26aa763f76f1ac6a7c58",
-    "url": "/pastforward/static/media/DistortionDosAnalogue.8faf7581.otf"
+    "revision": "d36b44b6a3db50effb9a46cb68e5627c",
+    "url": "/pastforward/static/media/GermaniaVersalien.d36b44b6.ttf"
   },
   {
     "revision": "49adc527b38f611dae3b",
@@ -20,8 +20,8 @@ self.__precacheManifest = [
     "url": "/pastforward/static/media/bg.b6243e71.jpg"
   },
   {
-    "revision": "d36b44b6a3db50effb9a46cb68e5627c",
-    "url": "/pastforward/static/media/GermaniaVersalien.d36b44b6.ttf"
+    "revision": "8faf7581001b26aa763f76f1ac6a7c58",
+    "url": "/pastforward/static/media/DistortionDosAnalogue.8faf7581.otf"
   },
   {
     "revision": "49adc527b38f611dae3b",
