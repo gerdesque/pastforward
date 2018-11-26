@@ -10,14 +10,20 @@ class Video extends Component {
       showIntro: true,
       showVideo: false,
       showAssociation: false,
+      showEnd: false,
       introText: this.props.intro,
       src: this.props.src+'#t='+this.convertTime(this.props.start)+','+this.convertTime(this.props.end),
       associations: this.props.associations,
+      endText: "ENDE",
       films: [],
-      arcs: []
+      arcs: [],
+      counter: 0
     }
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  introTime = 5000;
+  counterLimit = 6;
 
   convertTime(value) {
     var splitValue = value.split(':');
@@ -25,10 +31,14 @@ class Video extends Component {
   }
 
   componentDidMount() {
-    timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), 5000);
+    this.setTimer();
     document.addEventListener('click', this.handleClickOutside);
     this.getNodes();
   };
+
+  setTimer() {
+    timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), this.introTime);
+  }
 
   async getNodes() {
     try {
@@ -58,52 +68,67 @@ class Video extends Component {
   }
 
   pauseVideo = event => {
-    this.setState({showVideo: false, showAssociation: true});
+    if (this.state.counter >= this.counterLimit) {
+      this.showEndPage();
+    } else {
+      this.setState({showIntro: false, showVideo: false, showAssociation: true});
+    }
   }
 
-  selectAssociation = event => {
-    //TODO: Set new association and start new intro/video
-    //let currentNode = this.state.films.find(a => a.section === target);
+  showEndPage() {
     this.setState({
-      //introText: currentNode.intro,
-      //src: currentNode.video,
-      //associations:this.state.arcs.filter(a => a.source === target),
-      showIntro: true,
+      showIntro: false,
       showVideo: false,
-      showAssociation: false
+      showAssociation: false,
+      showEnd: true
     });
+  }
+
+  selectAssociation = target => {
+    let currentNode = this.state.films.find(a => a.section === target);
+    this.setState({
+      introText: currentNode.intro,
+      src: currentNode.video+'#t='+this.convertTime(currentNode.start)+','+this.convertTime(currentNode.end),
+      associations:this.state.arcs.filter(a => a.source === target),   
+      counter: this.state.counter + 1   
+    });
+    this.setState({showIntro: true});
+    this.setTimer();
   }
 
   getThumbnail(target) {
     let currentNode = this.state.films.find(a => a.section === target);
-    return currentNode.thumbnail;
+    return require('./thumbnails/' + currentNode.id + '.jpg');
   }
-
 
   render() {
 
     let introComponent = null;
     let videoComponent = null;
     let associationComponent = null;
+    let endComponent = null;
   
     if (this.state.showIntro) {
       introComponent = (<div className="intro"><p className="intro-Text">{this.state.introText}</p></div>);
     }
     if (this.state.showVideo) {
-      videoComponent = (<video autoPlay onPause={this.pauseVideo}>
+      videoComponent = (<video autoPlay muted onPause={this.pauseVideo}>
         <source type="video/mp4" src={this.state.src}></source>
         Your browser does not support the video tag.
       </video>);
     }
     if (this.state.showAssociation) {
-      let associations = this.state.associations.map((a) => <div className="association-Container" onClick={this.selectAssociation}>
+      let associations = this.state.associations.map((a) => <div className="association-Container" onClick={e => this.selectAssociation(a.target)}>
       <img className="association-Image" alt={a.target} src={this.getThumbnail(a.target)}/>
       <p className="association-Text">{a.associationText}</p>
       </div>);
       associationComponent = (<div className="association">{associations}</div>);
     }
+    if (this.state.showEnd) {
+      endComponent = (<div className="end"><p className="end-Text">{this.state.endText}</p></div>);
+    }
 
-    return (<div className="Video" ref={node => { this.node = node; }}>{introComponent}{videoComponent}{associationComponent}</div>);
+    return (<div className="Video" ref={node => { this.node = node; }}>{introComponent}{videoComponent}{associationComponent}{endComponent}</div>);
   }
 }
 

@@ -13,7 +13,7 @@ class Image extends Component {
       imageTop: Math.random() * (window.innerHeight / 2) + 'px',
       zIndex: this.props.id,
       transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
-      src: this.props.thumbnail,
+      src: require('./thumbnails/' + this.props.id + '.jpg'),
       showFlipside: false,
       showVideo: false
     };
