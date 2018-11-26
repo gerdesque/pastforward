@@ -22,9 +22,7 @@ class ImageList extends Component {
 
   render() {
     const imageItems = this.state.films.map((film) =>
-      (!film.thumbnail.toLowerCase().startsWith("todo")) ?
-      <Image key={film.id} {...film} associations={this.state.associations.filter(a => a.source === film.section)}/>
-      : null);
+      <Image key={film.id} {...film} associations={this.state.associations.filter(a => a.source === film.section)}/>);
       return (<div className="ImageList">{imageItems}</div>);
   }
 }

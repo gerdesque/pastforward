@@ -3,7 +3,7 @@
   src: url(VeteranTypewriter.ttf) format('truetype');
 }
 
-img {
+.Image {
   display: block;
   position: absolute;
   z-index: 1;

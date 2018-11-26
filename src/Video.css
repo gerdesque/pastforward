@@ -22,7 +22,6 @@ video {
 }
 
 .intro-Text,
-.association-Text,
 .end-Text {
   display: block;
   color: rgb(151, 141, 122);
@@ -32,7 +31,21 @@ video {
   text-align: center;
 }
 
+.association-Text {
+  display: block;
+  color: rgb(151, 141, 122);
+  font-size: 5vmax;
+  font-family: Berolina, arial, sans-serif;
+  padding: 0vh 10vh;
+  text-align: center;
+}
+
 .association-Container {
   float: left;
   width: 50%;
+}
+
+.association-Image {
+  width: 60%;
+  padding: 15vh 15vh 0;
 }

@@ -209,7 +209,7 @@ class Image extends Component {
 
     return (
       <div>
-      <img {...this.props} src={this.state.src} style={{...style}}
+      <img className="Image" {...this.props} src={this.state.src} style={{...style}}
         onTouchStart={this.onDown}
         onTouchMove={this.onMove}
         onTouchEnd={this.onEnd}
