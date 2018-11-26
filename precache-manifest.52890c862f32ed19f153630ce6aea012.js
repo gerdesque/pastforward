@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "d36b44b6a3db50effb9a46cb68e5627c",
-    "url": "/pastforward/static/media/GermaniaVersalien.d36b44b6.ttf"
+    "revision": "f52bdb2303318ab91b89",
+    "url": "/pastforward/static/css/main.f44b539e.chunk.css"
   },
   {
-    "revision": "49adc527b38f611dae3b",
-    "url": "/pastforward/static/css/main.38d637a1.chunk.css"
+    "revision": "f52bdb2303318ab91b89",
+    "url": "/pastforward/static/js/main.f52bdb23.chunk.js"
   },
   {
     "revision": "d1c808d891170dc72092",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/pastforward/static/media/DistortionDosAnalogue.8faf7581.otf"
   },
   {
-    "revision": "49adc527b38f611dae3b",
-    "url": "/pastforward/static/js/main.49adc527.chunk.js"
+    "revision": "d36b44b6a3db50effb9a46cb68e5627c",
+    "url": "/pastforward/static/media/GermaniaVersalien.d36b44b6.ttf"
   },
   {
     "revision": "fd0fb2bff6b979b471ecd1beee757ef2",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/pastforward/static/media/intro.d8ffc850.mp4"
   },
   {
-    "revision": "886304e7d6cffb24f3759201e679919c",
+    "revision": "db148d9819f478a35deba6376c9c3bc8",
     "url": "/pastforward/index.html"
   }
 ];
