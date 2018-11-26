@@ -19,16 +19,22 @@ class Video extends Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  introTime = 5000;
+
   convertTime(value) {
     var splitValue = value.split(':');
     return (+splitValue[0]) * 60 + (+splitValue[1]);
   }
 
   componentDidMount() {
-    timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), 5000);
+    this.setTimer();
     document.addEventListener('click', this.handleClickOutside);
     this.getNodes();
   };
+
+  setTimer() {
+    timeout = setTimeout(() => this.setState({showIntro: false, showVideo: true}), this.introTime);
+  }
 
   async getNodes() {
     try {
@@ -58,27 +64,24 @@ class Video extends Component {
   }
 
   pauseVideo = event => {
-    this.setState({showVideo: false, showAssociation: true});
+    this.setState({showIntro: false, showVideo: false, showAssociation: true});
   }
 
-  selectAssociation = event => {
-    //TODO: Set new association and start new intro/video
-    //let currentNode = this.state.films.find(a => a.section === target);
+  selectAssociation = target => {
+    let currentNode = this.state.films.find(a => a.section === target);
     this.setState({
-      //introText: currentNode.intro,
-      //src: currentNode.video,
-      //associations:this.state.arcs.filter(a => a.source === target),
-      showIntro: true,
-      showVideo: false,
-      showAssociation: false
+      introText: currentNode.intro,
+      src: currentNode.video+'#t='+this.convertTime(currentNode.start)+','+this.convertTime(currentNode.end),
+      associations:this.state.arcs.filter(a => a.source === target),      
     });
+    this.setState({showIntro: true});
+    this.setTimer();
   }
 
   getThumbnail(target) {
     let currentNode = this.state.films.find(a => a.section === target);
     return currentNode.thumbnail;
   }
-
 
   render() {
 
@@ -90,13 +93,13 @@ class Video extends Component {
       introComponent = (<div className="intro"><p className="intro-Text">{this.state.introText}</p></div>);
     }
     if (this.state.showVideo) {
-      videoComponent = (<video autoPlay onPause={this.pauseVideo}>
+      videoComponent = (<video autoPlay muted onPause={this.pauseVideo}>
         <source type="video/mp4" src={this.state.src}></source>
         Your browser does not support the video tag.
       </video>);
     }
     if (this.state.showAssociation) {
-      let associations = this.state.associations.map((a) => <div className="association-Container" onClick={this.selectAssociation}>
+      let associations = this.state.associations.map((a) => <div className="association-Container" onClick={e => this.selectAssociation(a.target)}>
       <img className="association-Image" alt={a.target} src={this.getThumbnail(a.target)}/>
       <p className="association-Text">{a.associationText}</p>
       </div>);

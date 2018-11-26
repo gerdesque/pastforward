@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     let component = null;
     if (this.state.showIntro) {
-      component = (<video autoPlay onPause={this.pauseVideo}>
+      component = (<video autoPlay muted onPause={this.pauseVideo}>
         <source type="video/mp4" src={require('./intro.mp4')}></source>
         Your browser does not support the video tag.
       </video>);
