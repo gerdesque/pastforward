@@ -15,7 +15,6 @@ class Image extends Component {
       zIndex: this.props.id,
       transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
       src: require('./assets/thumbnails/' + this.props.id + '.jpg'),
-      showFlipside: false,
       showVideo: false
     };
   }
@@ -87,8 +86,7 @@ class Image extends Component {
           var element = document.getElementById(this.props.id);
           var height = element.clientHeight;
           var width = element.clientWidth;
-          // TODO: change static back image
-          this.setState({src: this.swipe ? require('./assets/flipside/' + this.props.id + '.jpg') : this.state.src, showFlipside: !this.state.showFlipside});
+          this.setState({src: this.swipe ? require('./assets/flipside/' + this.props.id + '.jpg') : require('./assets/thumbnails/' + this.props.id + '.jpg')});
           element.height = height;
           element.width = width;
         }
