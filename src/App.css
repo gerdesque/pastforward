@@ -29,3 +29,13 @@
   width: 28px;
   opacity: 0.75;
 }
+
+.App-About {
+  float: right;
+  font-size: 2em;
+  margin: 2vh 2vh 0 0;
+}
+
+.App-About:before {
+  content: "ⓘ";
+}

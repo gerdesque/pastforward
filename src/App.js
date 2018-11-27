@@ -6,7 +6,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showIntro: true
+      showIntro: true,
+      showAboutUs: false,
+      aboutText: "past forward"
     }
   }
 
@@ -14,8 +16,18 @@ class App extends Component {
     this.setState({showIntro: false});
   }
 
+  showAboutUs = event => {
+    this.setState({showAboutUs: !this.state.showAboutUs});
+  }
+
   render() {
     let component = null;
+    let about = null;
+
+    if (this.state.showAboutUs) {
+      about = (<div className="about"><p className="about-Text">{this.state.aboutText}</p></div>);
+    }
+
     if (this.state.showIntro) {
       component = (<video autoPlay muted onPause={this.pauseVideo}>
         <source type="video/mp4" src={require('./intro.mp4')}></source>
@@ -29,7 +41,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-past">past</h1><h1 className="App-forward">forward</h1>
+          <span className="App-About" onClick={this.showAboutUs}/>
         </header>
+        {about}
         {component}
       </div>
     );

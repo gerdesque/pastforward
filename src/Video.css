@@ -12,7 +12,8 @@ video {
 
 .intro,
 .association,
-.end {
+.end,
+.about {
   position: relative;
   z-index: 9999;
   background: url(intro.png);
@@ -22,7 +23,8 @@ video {
 }
 
 .intro-Text,
-.end-Text {
+.end-Text,
+.about-Text {
   display: block;
   color: rgb(151, 141, 122);
   font-family: Berolina, arial, sans-serif;
