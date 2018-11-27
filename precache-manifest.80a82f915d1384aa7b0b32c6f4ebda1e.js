@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "a9795e05846a8ee7ec20",
-    "url": "/pastforward/static/css/main.6b08900d.chunk.css"
+    "revision": "9a237999facb9602733ec808f8cbb1c9",
+    "url": "/pastforward/static/media/1802.9a237999.jpg"
   },
   {
-    "revision": "a9795e05846a8ee7ec20",
-    "url": "/pastforward/static/js/main.a9795e05.chunk.js"
+    "revision": "1ebd3c8d5388f9d41d37",
+    "url": "/pastforward/static/css/main.0c903563.chunk.css"
   },
   {
-    "revision": "7b7169963265a2bcd476",
-    "url": "/pastforward/static/js/1.7b716996.chunk.js"
+    "revision": "aa6b85e93dbf06bcee22",
+    "url": "/pastforward/static/js/1.aa6b85e9.chunk.js"
   },
   {
     "revision": "d6b47d277073783c74d3",
@@ -17,7 +17,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "b6243e713c0e51ea37febecc63ff7727",
-    "url": "/pastforward/static/media/bg.b6243e71.jpg"
+    "url": "/pastforward/static/media/background.b6243e71.jpg"
   },
   {
     "revision": "8faf7581001b26aa763f76f1ac6a7c58",
@@ -26,10 +26,6 @@ self.__precacheManifest = [
   {
     "revision": "d36b44b6a3db50effb9a46cb68e5627c",
     "url": "/pastforward/static/media/GermaniaVersalien.d36b44b6.ttf"
-  },
-  {
-    "revision": "fd0fb2bff6b979b471ecd1beee757ef2",
-    "url": "/pastforward/static/media/VeteranTypewriter.fd0fb2bf.ttf"
   },
   {
     "revision": "d61b893828335e860f02d7de07211cb4",
@@ -180,8 +176,8 @@ self.__precacheManifest = [
     "url": "/pastforward/static/media/1801.54d947c7.jpg"
   },
   {
-    "revision": "9a237999facb9602733ec808f8cbb1c9",
-    "url": "/pastforward/static/media/1802.9a237999.jpg"
+    "revision": "1ebd3c8d5388f9d41d37",
+    "url": "/pastforward/static/js/main.1ebd3c8d.chunk.js"
   },
   {
     "revision": "20d9b336d6226fc9a947c8716c499403",
@@ -196,11 +192,167 @@ self.__precacheManifest = [
     "url": "/pastforward/static/media/2101.17906488.jpg"
   },
   {
+    "revision": "b4acf3e3806ac8456f7f5b8403fca8e6",
+    "url": "/pastforward/static/media/0101.b4acf3e3.jpg"
+  },
+  {
+    "revision": "298a09f35bc9586461fc34d3dda0d47f",
+    "url": "/pastforward/static/media/0102.298a09f3.jpg"
+  },
+  {
+    "revision": "3c7a8202f78cf9776530f1920ae22b60",
+    "url": "/pastforward/static/media/0201.3c7a8202.jpg"
+  },
+  {
+    "revision": "5e79ef549fed6d72718eb88eb5d3e230",
+    "url": "/pastforward/static/media/0301.5e79ef54.jpg"
+  },
+  {
+    "revision": "ab291d7e399459959f8bf2a86e32f161",
+    "url": "/pastforward/static/media/0401.ab291d7e.jpg"
+  },
+  {
+    "revision": "9250d0d8188821b9bd977b9aae88ad15",
+    "url": "/pastforward/static/media/0501.9250d0d8.jpg"
+  },
+  {
+    "revision": "9250d0d8188821b9bd977b9aae88ad15",
+    "url": "/pastforward/static/media/0502.9250d0d8.jpg"
+  },
+  {
+    "revision": "65db418c76291415d78683d7c89edbc6",
+    "url": "/pastforward/static/media/0601.65db418c.jpg"
+  },
+  {
+    "revision": "16adc6f345fecff6c4c8ac6ab52b1827",
+    "url": "/pastforward/static/media/0701.16adc6f3.jpg"
+  },
+  {
+    "revision": "8c53e86c5d7838c3c0203ef59ec037e1",
+    "url": "/pastforward/static/media/0702.8c53e86c.jpg"
+  },
+  {
+    "revision": "81ad4391c7c212ab88e8843934928ee1",
+    "url": "/pastforward/static/media/0703.81ad4391.jpg"
+  },
+  {
+    "revision": "560beabc018660452eb9e73d94ee60d3",
+    "url": "/pastforward/static/media/0801.560beabc.jpg"
+  },
+  {
+    "revision": "560beabc018660452eb9e73d94ee60d3",
+    "url": "/pastforward/static/media/0802.560beabc.jpg"
+  },
+  {
+    "revision": "560beabc018660452eb9e73d94ee60d3",
+    "url": "/pastforward/static/media/0803.560beabc.jpg"
+  },
+  {
+    "revision": "de9efee5599a538c1fb769757b026bcb",
+    "url": "/pastforward/static/media/0804.de9efee5.jpg"
+  },
+  {
+    "revision": "74741fb01b446906ee5cf6abf40a4e94",
+    "url": "/pastforward/static/media/0901.74741fb0.jpg"
+  },
+  {
+    "revision": "74741fb01b446906ee5cf6abf40a4e94",
+    "url": "/pastforward/static/media/0902.74741fb0.jpg"
+  },
+  {
+    "revision": "74741fb01b446906ee5cf6abf40a4e94",
+    "url": "/pastforward/static/media/0903.74741fb0.jpg"
+  },
+  {
+    "revision": "b60a54eaa9742da5cabeb8f15128fec4",
+    "url": "/pastforward/static/media/0904.b60a54ea.jpg"
+  },
+  {
+    "revision": "74741fb01b446906ee5cf6abf40a4e94",
+    "url": "/pastforward/static/media/0905.74741fb0.jpg"
+  },
+  {
+    "revision": "50dafbf4b0d5850781cd25e329e370ed",
+    "url": "/pastforward/static/media/1001.50dafbf4.jpg"
+  },
+  {
+    "revision": "a2361bbe31f98aaa786869ce2665ffc0",
+    "url": "/pastforward/static/media/1002.a2361bbe.jpg"
+  },
+  {
+    "revision": "6844924daced10448ec6ba8aa547f434",
+    "url": "/pastforward/static/media/1101.6844924d.jpg"
+  },
+  {
+    "revision": "6844924daced10448ec6ba8aa547f434",
+    "url": "/pastforward/static/media/1102.6844924d.jpg"
+  },
+  {
+    "revision": "6844924daced10448ec6ba8aa547f434",
+    "url": "/pastforward/static/media/1103.6844924d.jpg"
+  },
+  {
+    "revision": "7ebe140387ae873ece8341f8e23e0e4a",
+    "url": "/pastforward/static/media/1201.7ebe1403.jpg"
+  },
+  {
+    "revision": "bebfc73d27efab73dfefc3eedfff44f1",
+    "url": "/pastforward/static/media/1301.bebfc73d.jpg"
+  },
+  {
+    "revision": "bebfc73d27efab73dfefc3eedfff44f1",
+    "url": "/pastforward/static/media/1302.bebfc73d.jpg"
+  },
+  {
+    "revision": "eb8464c68f91eda8c3a1d1e3020c6f4b",
+    "url": "/pastforward/static/media/1401.eb8464c6.jpg"
+  },
+  {
+    "revision": "6663a1c5218e7895d789c29cc605be94",
+    "url": "/pastforward/static/media/1501.6663a1c5.jpg"
+  },
+  {
+    "revision": "fc89f5fbcba4025c0b8c061ef45b53f5",
+    "url": "/pastforward/static/media/1601.fc89f5fb.jpg"
+  },
+  {
+    "revision": "7daf13939675183eab5f72742493cddd",
+    "url": "/pastforward/static/media/1701.7daf1393.jpg"
+  },
+  {
+    "revision": "7daf13939675183eab5f72742493cddd",
+    "url": "/pastforward/static/media/1702.7daf1393.jpg"
+  },
+  {
+    "revision": "7daf13939675183eab5f72742493cddd",
+    "url": "/pastforward/static/media/1703.7daf1393.jpg"
+  },
+  {
+    "revision": "1d0fb84cf9a5ac8b9f802c4cea8d663d",
+    "url": "/pastforward/static/media/1801.1d0fb84c.jpg"
+  },
+  {
+    "revision": "10627e361fd6cfe54705ab27345d4b06",
+    "url": "/pastforward/static/media/1802.10627e36.jpg"
+  },
+  {
+    "revision": "bc55dd28e9e66c758a1d8aa41b08638a",
+    "url": "/pastforward/static/media/1901.bc55dd28.jpg"
+  },
+  {
+    "revision": "2c62984b3f568ca26f96808d391de4e7",
+    "url": "/pastforward/static/media/2001.2c62984b.jpg"
+  },
+  {
+    "revision": "1e23e9c9ce1dbfaafd097f4dc496c46f",
+    "url": "/pastforward/static/media/2101.1e23e9c9.jpg"
+  },
+  {
     "revision": "d8ffc850fc4a4dd5a719cadd9c105718",
     "url": "/pastforward/static/media/intro.d8ffc850.mp4"
   },
   {
-    "revision": "c0ad76d4a55f903eba6c4b1d8e625ca9",
+    "revision": "962b2588c6cebd10cc0570880d4dec99",
     "url": "/pastforward/index.html"
   }
 ];
