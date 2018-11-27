@@ -75,7 +75,6 @@ class Image extends Component {
   };
 
   onEnd = event => {
-    event.preventDefault();
     event.stopPropagation();
     this.dragging = false;
     if (event.targetTouches) {
@@ -87,7 +86,7 @@ class Image extends Component {
           var element = document.getElementById(this.props.id);
           var height = element.clientHeight;
           var width = element.clientWidth;
-          this.setState({src: this.swipe ? 'back.png' : this.props.thumbnail, showFlipside: !this.state.showFlipside});
+          this.setState({src: this.swipe ? 'back.png' : this.state.src, showFlipside: !this.state.showFlipside});
           element.height = height;
           element.width = width;
         }
