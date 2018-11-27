@@ -9,19 +9,18 @@
 }
 
 .App-header {
-  margin-left: 5vh;
+  margin: 0 0 0 5vh;
   color: white;
 }
 
 .App-past {
-  font-size: calc(48px + 2vmin);
   font-family: GermaniaVersalien, arial, sans-serif;
-  margin-right: 1vh;
+  margin: 0 1vh 0 0;
 }
 
 .App-forward {
-  font-size: calc(48px + 2vmin);
   font-family: DistortionDosAnalogue, arial, sans-serif;
+  margin: 0;
 }
 
 .App-forward:after {

@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <span className="App-past">past</span><span className="App-forward">forward</span>
+          <h1 className="App-past">past</h1><h1 className="App-forward">forward</h1>
         </header>
         {component}
       </div>

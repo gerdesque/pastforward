@@ -25,7 +25,6 @@ video {
 .end-Text {
   display: block;
   color: rgb(151, 141, 122);
-  font-size: 6vmax;
   font-family: Berolina, arial, sans-serif;
   padding: 15vh 5vh;
   text-align: center;
@@ -34,7 +33,6 @@ video {
 .association-Text {
   display: block;
   color: rgb(151, 141, 122);
-  font-size: 5vmax;
   font-family: Berolina, arial, sans-serif;
   padding: 0vh 10vh;
   text-align: center;
@@ -47,5 +45,5 @@ video {
 
 .association-Image {
   width: 60%;
-  padding: 15vh 15vh 0;
+  padding: 15vh 12vh 0;
 }

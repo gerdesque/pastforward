@@ -10,7 +10,7 @@ class Image extends Component {
     super(props);
     this.state = {
       imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
-      imageTop: Math.random() * (window.innerHeight / 2) + 'px',
+      imageTop: Math.random() * (window.innerHeight / 3) + 'px',
       zIndex: this.props.id,
       transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
       src: require('./thumbnails/' + this.props.id + '.jpg'),

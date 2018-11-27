@@ -1,6 +1,13 @@
 html {
   background: url(bg.jpg);
   background-size: cover;
+  font-size: 16px;
+}
+
+@media(min-width:60em) {
+  html {
+    font-size: 100%
+  }
 }
 
 html,
@@ -10,6 +17,22 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+p {
+  font-size: 250%;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 500%;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 350%;
+  }
 }
 
 .ImageList {
