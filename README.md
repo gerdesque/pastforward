@@ -1,21 +1,7 @@
-# pastforward
+# past forward ⏩
 
-## Available Scripts
+Start. Stop. Past Forward! - Vor uns ein Tisch mit alten, zerwühlten Momentaufnahmen. Was hat es damit auf sich? Eine lautlose Zeitreise in schwarz-weiß steht an ...
 
-In the project directory, you can run:
+Hinter jeder Momentaufnahme verbirgt sich ein Filmausschnitt aus dem Datenschatz des Deutschen Filminstituts. Durch die kurzen, vielseitigen Ausschnitte wird die Zeit zwischen Jahrhundertwende und Weimarer Republik erfahrbar. Am Ende jedes Filmausschnitts ergeben sich neue Erzählstränge und Anknüpfungspunkte, die dazu anregen, eigene Interpretationen und Eindrücke zu entwickeln. Es entsteht ein Geflecht von Dichtung und Wahrheit, Verformung und Inszenierung, Fiktion und Dokumentation.
 
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Umgesetzt ist das Ganze als Webseite, die in erster Linie für die Bedienung mit Touchgeräten ausgerichtet ist. 

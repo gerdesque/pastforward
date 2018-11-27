@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'GermaniaVersalien';
-  src: url(GermaniaVersalien.ttf) format('truetype');
+  src: url(assets/fonts/GermaniaVersalien.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'DistortionDosAnalogue';
-  src: url(DistortionDosAnalogue.otf) format('truetype');
+  src: url(assets/fonts/DistortionDosAnalogue.otf) format('truetype');
 }
 
 .App-header {

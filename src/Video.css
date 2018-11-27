@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Berolina';
-  src: url(Berolina.ttf) format('truetype');
+  src: url(assets/fonts/Berolina.ttf) format('truetype');
 }
 
 video {
@@ -16,25 +16,45 @@ video {
 .about {
   position: relative;
   z-index: 9999;
-  background: url(intro.png);
+  background: url(assets/intro.png);
   width: 100%;
-  height: 45rem;
+  height: 55rem;
   background-size: 100% 100%;
 }
 
 .intro-Text,
-.end-Text,
-.about-Text {
+.end-Text{
   display: block;
-  color: rgb(151, 141, 122);
   font-family: Berolina, arial, sans-serif;
   padding: 15vh 5vh;
   text-align: center;
 }
 
+.about-Text {
+  display: block;
+  font-family: Berolina, arial, sans-serif;
+  text-align: center;
+  font-size: 26px;
+  padding: 175px 100px 0;
+  margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .about-Text {
+    font-size: 18px;
+    padding: 150px 50px 0;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .about-Text {
+    font-size: 24px;
+    padding: 160px 60px 0;
+  }
+}
+
 .association-Text {
   display: block;
-  color: rgb(151, 141, 122);
   font-family: Berolina, arial, sans-serif;
   padding: 0vh 10vh;
   text-align: center;

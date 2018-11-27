@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from 'react';
 import './Image.css';
 import Video from './Video';
@@ -10,10 +11,10 @@ class Image extends Component {
     super(props);
     this.state = {
       imageLeft: Math.random() * (window.innerWidth / 2) + 'px',
-      imageTop: Math.random() * (window.innerHeight / 3) + 'px',
+      imageTop: Math.random() * (window.innerHeight / 4) + 'px',
       zIndex: this.props.id,
       transform: 'rotate(' + this.angle + 'rad) scale(' + this.size + ')',
-      src: require('./thumbnails/' + this.props.id + '.jpg'),
+      src: require('./assets/thumbnails/' + this.props.id + '.jpg'),
       showFlipside: false,
       showVideo: false
     };
@@ -86,7 +87,8 @@ class Image extends Component {
           var element = document.getElementById(this.props.id);
           var height = element.clientHeight;
           var width = element.clientWidth;
-          this.setState({src: this.swipe ? 'back.png' : this.state.src, showFlipside: !this.state.showFlipside});
+          // TODO: change static back image
+          this.setState({src: this.swipe ? require('./assets/flipside/' + this.props.id + '.jpg') : this.state.src, showFlipside: !this.state.showFlipside});
           element.height = height;
           element.width = width;
         }
@@ -96,7 +98,7 @@ class Image extends Component {
 
   init = () => {
     this.store[0].x = this.store[0].y = this.store[1].x = this.store[1].y = -1;   
-    var zIndex = 0; // just using positive indices
+    var zIndex = 0;
     var images = document.getElementsByTagName('img');
     for (var i = 0; i < images.length; i++) {
       if (parseInt(images[i].style.zIndex, 10) >= zIndex) {
@@ -196,11 +198,6 @@ class Image extends Component {
       transform: transform
     };
 
-    let flipside = null;
-    if (this.state.showFlipside) {
-      flipside = (<p class="Image-text" style={{...style}} onClick={this.displayVideo}>Kaiser Wilhelm beim Entenfüttern</p>)
-    }
-
     let video = null;
     if (this.state.showVideo) {
       video = (<Video {...this.props} src={this.props.video}/>)
@@ -218,7 +215,6 @@ class Image extends Component {
         onPointerOut={this.onEnd}
         onClick={this.displayVideo}
       />
-      {flipside}
       {video}
       </div>
     )

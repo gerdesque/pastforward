@@ -98,7 +98,7 @@ class Video extends Component {
 
   getThumbnail(target) {
     let currentNode = this.state.films.find(a => a.section === target);
-    return require('./thumbnails/' + currentNode.id + '.jpg');
+    return require('./assets/thumbnails/' + currentNode.id + '.jpg');
   }
 
   render() {

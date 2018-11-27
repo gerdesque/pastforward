@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'VeteranTypewriter';
-  src: url(VeteranTypewriter.ttf) format('truetype');
-}
-
 .Image {
   display: block;
   position: absolute;
@@ -12,19 +7,9 @@
   left: 0px;
   width: 50%;
   height: auto;
-  /* though this won't be flush, due to transform (actual top and left = half the width/height of image */
   border: 0.75rem transparent solid;
   background-color: #eee;
   margin: 0;
   padding: 0;
   touch-action: none;
-}
-
-.Image-text {
-  display: block;
-  position: absolute;
-  color: black;
-  font-family: VeteranTypewriter, arial, sans-serif;
-  font-size: calc(24px + 2vmin);
-  margin: 25vh;
 }
