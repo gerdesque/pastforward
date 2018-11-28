@@ -3,6 +3,8 @@ html {
   background-size: cover;
   font-size: 16px;
   color: rgb(151, 141, 122);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media(min-width:60em) {
@@ -32,6 +34,7 @@ a {
 
 h1 {
   font-size: 500%;
+  font-weight: normal;
   display: inline-block;
 }
 
