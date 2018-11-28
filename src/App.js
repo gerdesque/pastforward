@@ -36,10 +36,8 @@ class App extends Component {
       </p>)
 
     if (this.state.showAboutUs) {
-      about = (<div className="about">{aboutText}</div>);
-    }
-
-    if (this.state.showIntro) {
+      about = (<div className="about-Container"><div className="about">{aboutText}</div></div>);
+    } else if (this.state.showIntro) {
       component = (<video autoPlay muted onPause={this.pauseVideo}>
         <source type="video/mp4" src={require('./assets/intro.mp4')}></source>
         Your browser does not support the video tag.
