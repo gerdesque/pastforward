@@ -1,10 +1,12 @@
 @font-face {
   font-family: 'GermaniaVersalien';
+  font-display: auto;
   src: url(assets/fonts/GermaniaVersalien.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'DistortionDosAnalogue';
+  font-display: auto;
   src: url(assets/fonts/DistortionDosAnalogue.otf) format('truetype');
 }
 
