@@ -28,7 +28,14 @@ video {
   background-size: 100% 100%;
 }
 
-.intro-Text,
+.intro-Text {
+  display: block;
+  font-family: Berolina, arial, sans-serif;
+  text-align: center;
+  font-size: 4vw;
+  padding: 12vw 10vw;
+}
+
 .end-Text,
 .about-Text {
   display: block;
