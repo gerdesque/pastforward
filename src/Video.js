@@ -106,17 +106,17 @@ class Video extends Component {
     let videoComponent = null;
     let associationComponent = null;
     let endComponent = null;
-    let endText = (<p className="about-Text">
+    let endText = (<div className="end-Text">
     Das Leben vor rund 100 Jahren: Kaiserzeit, Erster Weltkrieg, Weimarer Republik. Das Medium Film vom Anfang des 20. Jahrhundert hält diese aufregende, turbulente und auch von Krieg und Zerstörung geprägte Zeit fest.<br/>
     <br/>Wir hoffen die kleinen Filmausschnitte haben euch einen guten, ersten Einblick geben können.<br/>
     <br/>Für alle die mehr zur Kaiserzeit, zum Ersten Weltkrieg, zur Weimarer Republik und zum Medium des Films zwischen Propaganda, Berichterstattung und Unterhaltung erfahren wollen, haben wir hier eine kleine Auswahl an weiterführenden Links zusammengestellt (ohne Anspruch auf Vollständigkeit).<br/>
     <ul>
-    <li><span role="img" aria-label="list item">⏩ </span>LeMO (Lebendiges Museum Online): <a href="https://www.dhm.de/lemo/kapitel/erster-weltkrieg/propaganda/kriegspropaganda-im-alltag.html">Propaganda im Alltag des 1. Weltkrieges</a>, <a href="https://www.dhm.de/lemo/kapitel/erster-weltkrieg/kriegsverlauf/kriegsgefangenschaft.html">Kriegsgefangenschaft</a>, <a href="https://www.dhm.de/lemo/kapitel/weimarer-republik/alltagsleben/hunger-und-elend.html">Hunger und soziales Elend in der Weimarer Republik</a>, uvm.</li>
-    <li><span role="img" aria-label="list item">⏩ </span>filmportal.de: <a href="https://www.filmportal.de/thema/das-deutsche-kino-und-der-erste-weltkrieg">Das deutsche Kino und der Erste Weltkrieg</a>, <a href="https://www.filmportal.de/thema/singende-sprechende-und-musizierende-films-die-tonbild-sammlung-im-deutschen-filminstitut">das Tonbild</a></li>
-    <li><span role="img" aria-label="list item">⏩ </span>Deutsche Nationalbibliothek: <a href="http://erster-weltkrieg.dnb.de/WKI/Web/DE/Home/home.html">virtuelle Ausstellung “100 Jahre Erster Weltkrieg”</a></li>
-    <li><span role="img" aria-label="list item">⏩ </span>Deutsche digitale Bibliothek: <a href="http://ausstellungen.deutsche-digitale-bibliothek.de/kino/">Das Kino des Ersten Weltkriegs</a></li>
+    <li><span role="img" aria-label="list item">⏩ </span>LeMO (Lebendiges Museum Online): <a target="_blank" rel="noopener noreferrer" href="https://www.dhm.de/lemo/kapitel/erster-weltkrieg/propaganda/kriegspropaganda-im-alltag.html">Propaganda im Alltag des 1. Weltkrieges</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.dhm.de/lemo/kapitel/erster-weltkrieg/kriegsverlauf/kriegsgefangenschaft.html">Kriegsgefangenschaft</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.dhm.de/lemo/kapitel/weimarer-republik/alltagsleben/hunger-und-elend.html">Hunger und soziales Elend in der Weimarer Republik</a>, uvm.</li>
+    <li><span role="img" aria-label="list item">⏩ </span>filmportal.de: <a target="_blank" rel="noopener noreferrer" href="https://www.filmportal.de/thema/das-deutsche-kino-und-der-erste-weltkrieg">Das deutsche Kino und der Erste Weltkrieg</a>, <a target="_blank" rel="noopener noreferrer" href="https://www.filmportal.de/thema/singende-sprechende-und-musizierende-films-die-tonbild-sammlung-im-deutschen-filminstitut">das Tonbild</a></li>
+    <li><span role="img" aria-label="list item">⏩ </span>Deutsche Nationalbibliothek: <a target="_blank" rel="noopener noreferrer" href="http://erster-weltkrieg.dnb.de/WKI/Web/DE/Home/home.html">virtuelle Ausstellung “100 Jahre Erster Weltkrieg”</a></li>
+    <li><span role="img" aria-label="list item">⏩ </span>Deutsche digitale Bibliothek: <a target="_blank" rel="noopener noreferrer" href="http://ausstellungen.deutsche-digitale-bibliothek.de/kino/">Das Kino des Ersten Weltkriegs</a></li>
     </ul>
-    <br/>Diese Website entstand im Rahmen des <a href="https://codingdavinci.de/events/rheinmain/">Kulturhackathon Coding DaVinci Rhein-Main 2018</a>. Wir danken dem <a href="https://deutsches-filminstitut.de/">Deutschen Filminstitut</a>, welches die Filme unter CC-BY-SA und die dazugehörigen Metadaten unter der CC0 Lizenz zur Verfügung gestellt hat. Wir (Anne, Gerd, Jana und Nadine) sind ein Team von historisch, technisch und kulturell interessierten Menschen, die mit dieser Anwendung eine spielerische und informative Annäherung an den Film und die Zeit vor 100 Jahren schaffen wollen.</p>)
+    <br/>Diese Website entstand im Rahmen des <a target="_blank" rel="noopener noreferrer" href="https://codingdavinci.de/events/rheinmain/">Kulturhackathon Coding DaVinci Rhein-Main 2018</a>. Wir danken dem <a target="_blank" rel="noopener noreferrer" href="https://deutsches-filminstitut.de/">Deutschen Filminstitut</a>, welches die Filme unter CC-BY-SA und die dazugehörigen Metadaten unter der CC0 Lizenz zur Verfügung gestellt hat. Wir (Anne, Gerd, Jana und Nadine) sind ein Team von historisch, technisch und kulturell interessierten Menschen, die mit dieser Anwendung eine spielerische und informative Annäherung an den Film und die Zeit vor 100 Jahren schaffen wollen.</div>)
   
     if (this.state.showIntro) {
       introComponent = (<div className="intro"><p className="intro-Text">{this.state.introText}</p></div>);
@@ -135,10 +135,10 @@ class Video extends Component {
       associationComponent = (<div className="association">{associations}</div>);
     }
     if (this.state.showEnd) {
-      endComponent = (<div className="end"><p className="end-Text">{endText}</p></div>);
+      endComponent = (<div className="end"><div className="end-Text">{endText}</div></div>);
     }
 
-    return (<div className="Video" ref={node => { this.node = node; }}>{associationComponent}{introComponent}{videoComponent}{endComponent}</div>);
+    return (<div className="Video" ref={node => { this.node = node; }}>{introComponent}{videoComponent}{associationComponent}{endComponent}</div>);
   }
 }
 
