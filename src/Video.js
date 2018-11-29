@@ -89,7 +89,7 @@ class Video extends Component {
       return {
       showIntro: true,
       introText: currentNode.intro,
-      src: currentNode.video+'#t='+1+','+2,
+      src: currentNode.video+'#t='+this.convertTime(currentNode.start)+','+this.convertTime(currentNode.end),
       associations: this.state.arcs.filter(a => a.source === target),   
       counter: prevState.counter + 1}
     });
