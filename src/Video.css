@@ -8,6 +8,7 @@
 .about-Container {
   overflow: auto;
   margin: 0;
+  overflow-x: hidden;
 }
 
 video {

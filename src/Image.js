@@ -102,6 +102,10 @@ class Image extends Component {
       if (parseInt(images[i].style.zIndex, 10) >= zIndex) {
         zIndex = parseInt(images[i].style.zIndex, 10) + 1;
       }
+      images[i].addEventListener('touchmove',
+      function(e) {
+          e.preventDefault();
+      }, {passive:false});
     }
     this.setState({zIndex: zIndex});
   };
