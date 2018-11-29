@@ -55,7 +55,6 @@ class Video extends Component {
   }
 
   handleClickOutside(event) {
-    event.preventDefault();
     event.stopPropagation();
     if (this.node && !this.node.contains(event.target)) {
     this.setState({
