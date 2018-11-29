@@ -191,6 +191,13 @@ class Image extends Component {
     }
   }
 
+  flipSide = event => {
+    event.preventDefault();
+    this.swipe = !this.swipe;
+    this.setState({src: this.swipe ? require('./assets/flipside/' + this.props.id + '.jpg') : require('./assets/thumbnails/' + this.props.id + '.jpg')});
+
+  }
+
   render() {
     const {imageLeft, imageTop, zIndex, transform} = this.state;
     let style = {
@@ -216,6 +223,7 @@ class Image extends Component {
         onPointerUp={this.onEnd}
         onPointerOut={this.onEnd}
         onClick={this.displayVideo}
+        onContextMenu={this.flipSide}
       />
       {video}
       </div>
